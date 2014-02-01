@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
 	
 	private CheckBox checkBoxPrinter,checkBoxLaundry,checkBoxSubFree,checkBoxAC;
 	public Button buttonSearch;
-	public String printData = "";
+	public String printData = ""; 
 	public String acData = "";
 	public String subfreeData = "";
 	public String laundryData = "";
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
     		public void onClick (View v) {
     			
     			if (((CheckBox) v).isChecked()) {
-    				printData = "&printer=1";}
+    				printData = "1";}
     			else printData = "";
     			}
     		
@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
     		public void onClick (View v) {
     			
     			if (((CheckBox) v).isChecked()) {
-    				laundryData = "&laundry=1";}
+    				laundryData = "1";}
     			else laundryData = "";
     			}
     		
@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
 	public void onClick (View v) {
 		
 		if (((CheckBox) v).isChecked()) {
-			acData = "&ac=1";}
+			acData = "1";}
 		else acData = "";
 		}
 	
@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
     		public void onClick (View v) {
     			
     			if (((CheckBox) v).isChecked()) {
-    				subfreeData = "&subfree=1";}
+    				subfreeData = "1";}
     			else subfreeData = "";
     	
     		}

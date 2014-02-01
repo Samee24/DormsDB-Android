@@ -5,15 +5,32 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -188,6 +205,25 @@ public ArrayList<HashMap <String, String>> roomPosts;
 		}
 		return isAvailable;
 	}
+	
+	private HttpClient createHttpClient() {
+		
+		 HttpParams params = new BasicHttpParams();
+		    HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
+		    HttpProtocolParams.setContentCharset(params, HTTP.DEFAULT_CONTENT_CHARSET);
+		    HttpProtocolParams.setUseExpectContinue(params, true);
+
+		    SchemeRegistry schReg = new SchemeRegistry();
+		    SSLSocketFactory socketFactory = SSLSocketFactory.getSocketFactory();
+		    socketFactory.setHostnameVerifier((X509HostnameVerifier) org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+		    schReg.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+		    schReg.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
+		    ClientConnectionManager conMgr = new ThreadSafeClientConnManager(params, schReg);
+		    HttpsURLConnection.setDefaultHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+
+		    return new DefaultHttpClient(conMgr, params);
+	}
+	
 
  private class getRoomData extends AsyncTask<Object, Void, JSONObject>{
 
@@ -202,42 +238,58 @@ public ArrayList<HashMap <String, String>> roomPosts;
 	 protected JSONObject doInBackground(Object...arg0) {
 		 
 		try {
-			//DefaultHttpClient defaultClient = new DefaultHttpClient();
-			//HttpGet httpGetRequest = new HttpGet("https://dormsdb.alexthemitchell.com/api.php?format=JSON" 
-			//+ ld + ad + pd);
-			Log.v(TAG, ld + ad + pd );
-			//HttpResponse connection = defaultClient.execute(s_url);
-			URL url = new URL("https://dormsdb.alexthemitchell.com/api.php?format=JSON" 
-					+ ld + ad + pd + sfd);
 			
-			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+			HttpPost httppost = new HttpPost("https://dormsdb.alexthemitchell.com/api.php");
+			
+		
+		
+			        // Add your data
+			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			        nameValuePairs.add(new BasicNameValuePair("roomquery", "roomquery=true"));
+			        nameValuePairs.add(new BasicNameValuePair("ac", ad));
+			        nameValuePairs.add(new BasicNameValuePair("laundry", ld));
+			        nameValuePairs.add(new BasicNameValuePair("printer", pd));
+			        nameValuePairs.add(new BasicNameValuePair("subfree", sfd));
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-				@Override
-				public boolean verify(String arg0, SSLSession arg1) {
-					// TODO Auto-generated method stub
-					return true;
-				}
-			});
-			HttpsURLConnection s_url = (HttpsURLConnection) url.openConnection();
-			//HttpResponse connection = defaultClient.execute((HttpUriRequest) s_url);
+			        // Execute HTTP Post Request
+			        HttpResponse response = createHttpClient().execute(httppost);
+			      
+			        
+			   
 			
-			Log.v(TAG, ld + ad + pd + sfd );
+			Log.v(TAG, ld + ad + pd );
+			//URL url = new URL("https://dormsdb.alexthemitchell.com/api.php?format=JSON" 
+				//	+ ld + ad + pd + sfd);
+			
+			//HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+
+			//	@Override
+			//	public boolean verify(String arg0, SSLSession arg1) {
+			////		// TODO Auto-generated method stub
+			//		return true;
+			//	}
+		//	});
+			//HttpsURLConnection s_url = (HttpsURLConnection) url.openConnection();
+			
+			//Log.v(TAG, ld + ad + pd + sfd );
 			
 			
 			 
-			 responseCode = s_url.getResponseCode();
+			 responseCode = response.getStatusLine().getStatusCode();
 			 
 			 if (responseCode == HttpURLConnection.HTTP_OK) {
-				  BufferedReader reader = new BufferedReader(new InputStreamReader(s_url.getInputStream(), "UTF-8"));
+				  BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 				  String responseData = reader.readLine();
 					
 					
 					jsonResponse = new JSONObject(responseData);
 					reader.close();
+					Log.v(TAG, responseData);
 				 
 				 
 			 }
-			 else {responseCode = s_url.getResponseCode();
+			 else {responseCode = response.getStatusLine().getStatusCode();
 				Log.i(TAG, "Code: " + responseCode);
 				 
 			 }
