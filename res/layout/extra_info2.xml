@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+      <TextView
+          android:id="@+id/Type"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/Raters"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="66dp"
+          android:text="Type"
+          android:textSize="20sp" />
+
+      <RatingBar
+          android:id="@+id/rating"
+          android:layout_width="wrap_content"
+          android:isIndicator="true" 
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/Hall"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="85dp" />
+
+      <TextView
+          android:id="@+id/Hall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentTop="true"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="28dp"
+          android:text="Hall"
+          android:textSize="28sp" />
+
+      <TextView
+          android:id="@+id/Cluster"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/rating"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="47dp"
+          android:text="Cluster"
+          android:textSize="20sp" />
+
+      <TextView
+          android:id="@+id/Raters"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/Cluster"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="73dp"
+          android:text="Raters"
+          android:textSize="20sp" />
+
+      <TextView
+          android:id="@+id/Room"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/Hall"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="13dp"
+          android:text="Room" />
+
+      <TextView
+          android:id="@+id/SubfreeExtra"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/Hall"
+          android:layout_below="@+id/Room"
+          android:layout_marginTop="27dp"
+          android:text="TextView" />
+
+</RelativeLayout>

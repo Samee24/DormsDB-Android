@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DormsDb</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="Option_AC">Air Conditioning? </string>
+    <string name="Option_Laundry">Laundry machine?</string>
+    <string name="Option_Printer">Printer?</string>
+    <string name="Search">Search!</string>
+    <string name="toastPrinter">You love to Print.</string>
+    <string name="Searcher">Searcher</string>
+    <string name="SubFree">Substance Free?</string>
+
+</resources>
