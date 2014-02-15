@@ -1,21 +1,40 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    />
 
     <ListView
-        android:id="@+id/android:list"
-        android:layout_width="match_parent"
+        android:id="@+id/listview"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
-    </ListView>
-
+    />
+    
     <ProgressBar
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_gravity="center"
+        
+        />
+    
+    <TextView
+	    android:id="@+id/empty"
+	    android:text="No rooms match your criteria. Sorry!"
+	    android:textSize="28sp"
+	    android:textStyle="bold"
+	    android:textColor="#B80000"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:gravity="center"
+    />
 
-</RelativeLayout>
+
+
+</LinearLayout>

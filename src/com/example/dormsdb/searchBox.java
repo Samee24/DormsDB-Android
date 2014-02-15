@@ -35,7 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -45,12 +45,15 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class searchBox extends ListActivity{
+public class searchBox extends Activity{
 	
 public static final String TAG = searchBox.class.getSimpleName();
 	
@@ -61,16 +64,24 @@ public String ad;
 public String pd;
 public String sfd;
 public ArrayList<HashMap <String, String>> roomPosts;
+private TextView empty;
+//public ListView listview;
+//ArrayList<MessageDetails> details;
+
+
+
 
 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.list_view);
+	    setContentView(com.example.dormsdb.R.layout.list_view);
+		
+		
+	
 		
 		Intent intent = getIntent();
-		
 		   if (intent.getExtras() != null) {
 		   	 
 			 
@@ -81,9 +92,11 @@ public ArrayList<HashMap <String, String>> roomPosts;
 		    Log.v("DATA", ld + ad + pd);
 		   }
 		
-		mProgressBar = (ProgressBar) findViewById(R.id.progressBar1);
+		mProgressBar = (ProgressBar) findViewById(com.example.dormsdb.R.id.progressBar1);
+		empty = (TextView) findViewById(R.id.empty);
 		
 		if (isNetworkAvailable()) {
+			empty.setVisibility(View.INVISIBLE);
 			mProgressBar.setVisibility(View.VISIBLE);
 			getRoomData GetRoomData = new getRoomData ();
 			GetRoomData.execute();
@@ -98,38 +111,13 @@ public ArrayList<HashMap <String, String>> roomPosts;
 
 }
 	
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		
-		Intent intent1 = new Intent (searchBox.this, ExtraInfo.class);
-		Map<String, String> map = roomPosts.get(position);
-		
-		String hall = map.get("hall");
-		String room = map.get("room");
-		String subfree = map.get("subfree");
-		String raters = map.get("raters");
-		String types = map.get("type");
-		String ratings = map.get("rating");
-		String clusters = map.get("cluster");
-		
-		intent1.putExtra("hall", hall);
-		intent1.putExtra("room", room);
-		intent1.putExtra("subfree", subfree);
-		intent1.putExtra("type", types);
-		intent1.putExtra("rating", ratings);
-		intent1.putExtra("raters", raters);
-		intent1.putExtra("cluster", clusters);
-		
-		searchBox.this.startActivity(intent1);
 	
-		
-		
-	}
+	
 	
 	private void handleResponse() {
 		mProgressBar.setVisibility(View.INVISIBLE);
 		if (mRoomInfo == null) {
-			//TODO
+			Toast.makeText(this, "No information to display!", Toast.LENGTH_LONG).show();
 		}
 		else {
 			
@@ -144,6 +132,9 @@ public ArrayList<HashMap <String, String>> roomPosts;
 				
 				String hall = rm1.getString("hall");
 				hall = Html.fromHtml(hall).toString();
+				
+				String campus = rm1.getString("campus");
+				campus = Html.fromHtml(campus).toString();
 				
 				String room = rm1.getString("room");				
 				room = Html.fromHtml(room).toString();
@@ -163,6 +154,8 @@ public ArrayList<HashMap <String, String>> roomPosts;
 				String cluster = rm1.getString("cluster");
 				cluster = Html.fromHtml(cluster).toString();
 				
+				
+				
 				HashMap <String, String> post = new HashMap <String, String>();
 				post.put("hall", hall);
 				post.put("room", room);
@@ -172,17 +165,91 @@ public ArrayList<HashMap <String, String>> roomPosts;
 				post.put("raters", raters);
 				post.put("cluster", cluster);
 				
+				if (campus.equals("East")) {
+					post.put("hallImage", Integer.toString(R.drawable.east));
+				} else if (campus.equals("South")) {
+					post.put("hallImage", Integer.toString(R.drawable.south));
+				} else if  (campus.equals("North")) {
+					post.put("hallImage", Integer.toString(R.drawable.north));
+				}
+				
+				
+				
+				
+				
+				int[] imagez = new int[] {
+				com.example.dormsdb.R.drawable.east,
+				com.example.dormsdb.R.drawable.north,
+				com.example.dormsdb.R.drawable.south
+				
+		};
+		
+		/*if (hall == "East") {
+			post.put("hallImage", Integer.toString(com.example.dormsdb.R.drawable.east));
+		}*/
 				
 				roomPosts.add(post);
 			}
 				
-				int[] ids = {android.R.id.text1, android.R.id.text2};
-				String[] keys = {"hall", "room"};
-				SimpleAdapter adapter = new SimpleAdapter(this, 
-						roomPosts,android.R.layout.simple_list_item_2, keys, ids);
+			
+			
+				int[] ids = {com.example.dormsdb.R.id.hall, com.example.dormsdb.R.id.room, com.example.dormsdb.R.id.hallImage};
+				String[] keys = {"hall", "room", "hallImage"};	
 				
-				setListAdapter(adapter);
-				 
+				
+				
+				if (roomPosts.isEmpty()) {
+					empty.setVisibility(View.VISIBLE);
+				}
+				
+			
+				
+			
+				ListView listView = ( ListView ) findViewById(com.example.dormsdb.R.id.listview);
+		      
+				SimpleAdapter adapter = new SimpleAdapter(this, 
+					 roomPosts,com.example.dormsdb.R.layout.single_list_view, keys, ids);
+				
+				
+				listView.setAdapter(adapter);
+				
+				listView.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+						long id) {
+					{
+						
+						Intent intent1 = new Intent (searchBox.this, ExtraInfo.class);
+						Map<String, String> map = roomPosts.get(position);
+						
+						String hall = map.get("hall");
+						String room = map.get("room");
+						String subfree = map.get("subfree");
+						String raters = map.get("raters");
+						String types = map.get("type");
+						String ratings = map.get("rating");
+						String clusters = map.get("cluster");
+						
+						intent1.putExtra("hall", hall);
+						intent1.putExtra("room", room);
+						intent1.putExtra("subfree", subfree);
+						intent1.putExtra("type", types);
+						intent1.putExtra("rating", ratings);
+						intent1.putExtra("raters", raters);
+						intent1.putExtra("cluster", clusters);
+						
+						searchBox.this.startActivity(intent1);
+					
+						
+						
+					}
+					
+				}
+				
+			}); 
+				//setListAdapter(adapter);
+				
 				
 			}
 			catch (JSONException e){
@@ -316,6 +383,8 @@ public ArrayList<HashMap <String, String>> roomPosts;
 		handleResponse();
 		
 	}
+	
+	
 
 	
 

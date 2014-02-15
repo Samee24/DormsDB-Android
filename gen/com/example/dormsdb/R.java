@@ -21,30 +21,40 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int dormslogo=0x7f020000;
+        public static final int east=0x7f020000;
         public static final int ic_launcher=0x7f020001;
+        public static final int north=0x7f020002;
+        public static final int south=0x7f020003;
+        public static final int title_image=0x7f020004;
     }
     public static final class id {
         public static final int Cluster=0x7f08000a;
         public static final int Hall=0x7f080009;
         public static final int Raters=0x7f080007;
         public static final int Room=0x7f08000b;
-        public static final int SubFree=0x7f080003;
+        public static final int SubFree=0x7f080005;
         public static final int SubfreeExtra=0x7f08000c;
         public static final int Type=0x7f080006;
-        public static final int action_settings=0x7f08000e;
-        public static final int buttonSearch=0x7f080004;
-        public static final int checkBoxAC=0x7f080001;
-        public static final int checkBoxLaundry=0x7f080002;
-        public static final int checkBoxPrinter=0x7f080005;
+        public static final int action_settings=0x7f080014;
+        public static final int buttonSearch=0x7f080003;
+        public static final int checkBoxAC=0x7f080002;
+        public static final int checkBoxLaundry=0x7f080001;
+        public static final int checkBoxPrinter=0x7f080004;
+        public static final int empty=0x7f080010;
+        public static final int hall=0x7f080012;
+        public static final int hallImage=0x7f080011;
         public static final int imageView1=0x7f080000;
-        public static final int progressBar1=0x7f08000d;
+        public static final int listview=0x7f08000e;
+        public static final int progressBar1=0x7f08000f;
         public static final int rating=0x7f080008;
+        public static final int room=0x7f080013;
+        public static final int textview=0x7f08000d;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int extra_info2=0x7f030001;
         public static final int list_view=0x7f030002;
+        public static final int single_list_view=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f070000;
