@@ -15,22 +15,26 @@
         android:layout_height="wrap_content"
     />
     
-    <TextView
-    android:id="@+id/empty"
-    android:text="No rooms match your criteria. Sorry!"
-    android:textSize="28sp"
-    android:textStyle="bold"
-    android:textColor="#B80000"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
-    />
-
     <ProgressBar
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_gravity="center"
+        
+        />
+    
+    <TextView
+	    android:id="@+id/empty"
+	    android:text="No rooms match your criteria. Sorry!"
+	    android:textSize="28sp"
+	    android:textStyle="bold"
+	    android:textColor="#B80000"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:gravity="center"
+    />
+
+
 
 </LinearLayout>

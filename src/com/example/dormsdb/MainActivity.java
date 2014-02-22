@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
     		public void onClick (View v) {
     			
     			if (((CheckBox) v).isChecked()) {
-    				printData = "1";}
+    				printData = "&printer=1";}
     			else printData = "";
     			}
     		
@@ -73,7 +73,7 @@ public class MainActivity extends Activity {
     		public void onClick (View v) {
     			
     			if (((CheckBox) v).isChecked()) {
-    				laundryData = "1";}
+    				laundryData = "&laundry=1";}
     			else laundryData = "";
     			}
     		
@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
 	public void onClick (View v) {
 		
 		if (((CheckBox) v).isChecked()) {
-			acData = "1";}
+			acData = "&ac=1";}
 		else acData = "";
 		}
 	
@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
     		public void onClick (View v) {
     			
     			if (((CheckBox) v).isChecked()) {
-    				subfreeData = "1";}
+    				subfreeData = "&subfree=1";}
     			else subfreeData = "";
     	
     		}

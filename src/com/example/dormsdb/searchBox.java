@@ -5,18 +5,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
@@ -25,7 +28,6 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
@@ -44,6 +46,8 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
@@ -67,6 +71,8 @@ private TextView empty;
 
 
 
+
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +90,7 @@ private TextView empty;
 		    ad = intent.getStringExtra("AD");
 		    pd = intent.getStringExtra("PD");
 		    sfd = intent.getStringExtra("SFD");
-		    Log.v("DATA", ld + ad + pd);
+		    Log.v("DATA",ld + ad + pd + sfd);
 		   }
 		
 		mProgressBar = (ProgressBar) findViewById(com.example.dormsdb.R.id.progressBar1);
@@ -108,33 +114,6 @@ private TextView empty;
 	
 	
 	
-	/*protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		
-		Intent intent1 = new Intent (searchBox.this, ExtraInfo.class);
-		Map<String, String> map = roomPosts.get(position);
-		
-		String hall = map.get("hall");
-		String room = map.get("room");
-		String subfree = map.get("subfree");
-		String raters = map.get("raters");
-		String types = map.get("type");
-		String ratings = map.get("rating");
-		String clusters = map.get("cluster");
-		
-		intent1.putExtra("hall", hall);
-		intent1.putExtra("room", room);
-		intent1.putExtra("subfree", subfree);
-		intent1.putExtra("type", types);
-		intent1.putExtra("rating", ratings);
-		intent1.putExtra("raters", raters);
-		intent1.putExtra("cluster", clusters);
-		
-		searchBox.this.startActivity(intent1);
-	
-		
-		
-	}*/
 	
 	private void handleResponse() {
 		mProgressBar.setVisibility(View.INVISIBLE);
@@ -155,6 +134,18 @@ private TextView empty;
 				String hall = rm1.getString("hall");
 				hall = Html.fromHtml(hall).toString();
 				
+				String ac = rm1.getString("ac");
+				ac = Html.fromHtml(ac).toString();
+				
+				String laundry = rm1.getString("laundry");
+				laundry = Html.fromHtml(laundry).toString();
+				
+				String campus = rm1.getString("campus");
+				campus = Html.fromHtml(campus).toString();
+				
+				String printer = rm1.getString("printer");
+				printer = Html.fromHtml(printer).toString();
+				
 				String room = rm1.getString("room");				
 				room = Html.fromHtml(room).toString();
 				
@@ -173,6 +164,8 @@ private TextView empty;
 				String cluster = rm1.getString("cluster");
 				cluster = Html.fromHtml(cluster).toString();
 				
+				
+				
 				HashMap <String, String> post = new HashMap <String, String>();
 				post.put("hall", hall);
 				post.put("room", room);
@@ -182,14 +175,52 @@ private TextView empty;
 				post.put("raters", raters);
 				post.put("cluster", cluster);
 				
+				if (campus.equals("East")) {
+					post.put("hallImage", Integer.toString(R.drawable.east));
+				} else if (campus.equals("South")) {
+					post.put("hallImage", Integer.toString(R.drawable.south));
+				} else if  (campus.equals("North")) {
+					post.put("hallImage", Integer.toString(R.drawable.north));
+				}
+				
+				if (subfree.equals("1")) {
+					post.put("subfreeImg", Integer.toString(R.drawable.subfree));
+				}
+				if (printer.equals("1")) {
+					post.put("printerImg", Integer.toString(R.drawable.printer));
+				}
+				if (ac.equals("1")) {
+					post.put("acImg", Integer.toString(R.drawable.aircond));
+				}
+				if (laundry.equals("1")) {
+					post.put("laundryImg", Integer.toString(R.drawable.laundry));
+				}
+				
+				
+				
+				
+				
+				int[] imagez = new int[] {
+				com.example.dormsdb.R.drawable.east,
+				com.example.dormsdb.R.drawable.north,
+				com.example.dormsdb.R.drawable.south
+				
+		};
+		
+		/*if (hall == "East") {
+			post.put("hallImage", Integer.toString(com.example.dormsdb.R.drawable.east));
+		}*/
 				
 				roomPosts.add(post);
 			}
 				
 			
 			
-				int[] ids = {com.example.dormsdb.R.id.hall, com.example.dormsdb.R.id.room, com.example.dormsdb.R.id.hallImage};
-				String[] keys = {"hall", "room", "cluster"};	
+				int[] ids = {com.example.dormsdb.R.id.hall, com.example.dormsdb.R.id.room, 
+						com.example.dormsdb.R.id.hallImage, R.id.subfreeImg, R.id.printerImg, R.id.acImg, R.id.laundryImg};
+				String[] keys = {"hall", "room", "hallImage","subfreeImg","printerImg", "acImg", "laundryImg"};	
+				
+				
 				
 				if (roomPosts.isEmpty()) {
 					empty.setVisibility(View.VISIBLE);
@@ -198,13 +229,49 @@ private TextView empty;
 			
 				
 			
-				ListView listView = ( ListView ) findViewById(com.example.dormsdb.R.id.listview); 
+				ListView listView = ( ListView ) findViewById(com.example.dormsdb.R.id.listview);
 		      
 				SimpleAdapter adapter = new SimpleAdapter(this, 
 					 roomPosts,com.example.dormsdb.R.layout.single_list_view, keys, ids);
 				
 				
 				listView.setAdapter(adapter);
+				
+				listView.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+						long id) {
+					{
+						
+						Intent intent1 = new Intent (searchBox.this, ExtraInfo.class);
+						Map<String, String> map = roomPosts.get(position);
+						
+						String hall = map.get("hall");
+						String room = map.get("room");
+						String subfree = map.get("subfree");
+						String raters = map.get("raters");
+						String types = map.get("type");
+						String ratings = map.get("rating");
+						String clusters = map.get("cluster");
+						
+						intent1.putExtra("hall", hall);
+						intent1.putExtra("room", room);
+						intent1.putExtra("subfree", subfree);
+						intent1.putExtra("type", types);
+						intent1.putExtra("rating", ratings);
+						intent1.putExtra("raters", raters);
+						intent1.putExtra("cluster", clusters);
+						
+						searchBox.this.startActivity(intent1);
+					
+						
+						
+					}
+					
+				}
+				
+			}); 
 				//setListAdapter(adapter);
 				
 				
@@ -263,53 +330,60 @@ private TextView empty;
 		 
 		try {
 			
-			HttpPost httppost = new HttpPost("https://dormsdb.alexthemitchell.com/api.php");
+			//HttpPost httppost = new HttpPost("https://dormsdb.alexthemitchell.com/api.php");
 			
+			URI url = new URI("https://dormsdb.alexthemitchell.com/api.php?roomquery=true" + ld + ad + pd + sfd);
+			Log.v("WEBSITE", url.toString());
 		
-		
-			        // Add your data
+			        /* Add your data
 			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			        nameValuePairs.add(new BasicNameValuePair("roomquery", "roomquery=true"));
 			        nameValuePairs.add(new BasicNameValuePair("ac", ad));
 			        nameValuePairs.add(new BasicNameValuePair("laundry", ld));
 			        nameValuePairs.add(new BasicNameValuePair("printer", pd));
 			        nameValuePairs.add(new BasicNameValuePair("subfree", sfd));
-			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));*/
 
 			        // Execute HTTP Post Request
-			        HttpResponse response = createHttpClient().execute(httppost);
+			       //HttpResponse response = createHttpClient().
 			      
-			        
+			Log.v(TAG, ld + ad + pd );
 			   
 			
-			Log.v(TAG, ld + ad + pd );
+			
 			//URL url = new URL("https://dormsdb.alexthemitchell.com/api.php?format=JSON" 
 				//	+ ld + ad + pd + sfd);
 			
-			//HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
 
-			//	@Override
-			//	public boolean verify(String arg0, SSLSession arg1) {
-			////		// TODO Auto-generated method stub
-			//		return true;
-			//	}
-		//	});
-			//HttpsURLConnection s_url = (HttpsURLConnection) url.openConnection();
+				@Override
+				public boolean verify(String arg0, SSLSession arg1) {
+					// TODO Auto-generated method stub
+					return true;
+				}
+		});
+			//HttpsURLConnection response = (HttpsURLConnection) url.openConnection();
 			
+			HttpGet get = new HttpGet(url);
 			//Log.v(TAG, ld + ad + pd + sfd );
-			
-			
+			HttpResponse response = createHttpClient().execute(get);
 			 
 			 responseCode = response.getStatusLine().getStatusCode();
+			 HttpEntity entity = response.getEntity();
+			 
+			 if (entity == null){
+				 Log.v(TAG, "empty");
+			 }
 			 
 			 if (responseCode == HttpURLConnection.HTTP_OK) {
+			
 				  BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 				  String responseData = reader.readLine();
-					
+				  
 					
 					jsonResponse = new JSONObject(responseData);
 					reader.close();
-					Log.v(TAG, responseData);
+	
 				 
 				 
 			 }
@@ -326,6 +400,9 @@ private TextView empty;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			Log.e(TAG, "Exception caught: " + e);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		 
 		 
