@@ -6,26 +6,7 @@
     android:background="#ffffff"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/title_image" />
-
-    <CheckBox
-        android:id="@+id/checkBoxLaundry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/checkBoxAC"
-        android:layout_marginTop="60dp"
-        android:onClick="onCheckboxClick"
-        android:text="@string/Option_Laundry" />
 
     <Button
         android:id="@+id/buttonSearch"
@@ -47,16 +28,6 @@
         android:text="@string/Option_Printer" />
 
     <CheckBox
-        android:id="@+id/checkBoxAC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/SubFree"
-        android:layout_alignTop="@+id/imageView1"
-        android:layout_marginTop="153dp"
-        android:onClick="onCheckboxClick"
-        android:text="@string/Option_AC" />
-
-    <CheckBox
         android:id="@+id/SubFree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,5 +35,54 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
         android:text="@string/SubFree" />
+
+    <CheckBox
+        android:id="@+id/checkBoxLaundry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBoxAC"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp"
+        android:onClick="onCheckboxClick"
+        android:text="@string/Option_Laundry" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/title_image" />
+
+    <CheckBox
+        android:id="@+id/checkBoxAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBoxLaundry"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="11dp"
+        android:onClick="onCheckboxClick"
+        android:text="@string/Option_AC" />
+
+    <TextView
+        android:id="@+id/Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonSearch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/Logout"
+        android:textColor="#0000FF"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/email_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Logout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="" />
 
 </RelativeLayout>

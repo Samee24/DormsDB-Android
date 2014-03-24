@@ -2,21 +2,31 @@ package com.example.dormsdb;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	
 	private CheckBox checkBoxPrinter,checkBoxLaundry,checkBoxSubFree,checkBoxAC;
+	private TextView mLogOut, mEmailDisplay;
 	public Button buttonSearch;
 	public String printData = ""; 
 	public String acData = "";
 	public String subfreeData = "";
 	public String laundryData = "";
+	public String check;
+	
+	/*public static final String PREFS_NAME = "MyPrefsFile";
+	private static final String PREF_USERNAME = "username";
+	private static final String PREF_PASSWORD = "password";*/
 	
 	
 	
@@ -24,7 +34,28 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checker();
         setContentView(R.layout.activity_main);
+        
+        mEmailDisplay = (TextView) findViewById(R.id.email_display);
+        mLogOut = (TextView) findViewById(R.id.Logout);
+        
+        mEmailDisplay.setText(check);
+        
+        mLogOut.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mLogOut.setTextColor(Color.RED);
+				SharedPreferences myPrefs = getSharedPreferences("PREFS", MODE_PRIVATE);
+		    	Editor editor = myPrefs.edit();
+		    	editor.clear();
+		    	editor.apply();
+		    	checker();
+				
+			}
+		});
+        
         
   
         setTitle("DORMSdb");
@@ -36,6 +67,16 @@ public class MainActivity extends Activity {
         
     }
     
+
+    
+    
+    @Override
+    protected void onDestroy() {
+    	// TODO Auto-generated method stub
+    	super.onStop();
+    	
+    	
+    }
  
 
 
@@ -141,6 +182,26 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+	
+	private boolean checker(){
+    	
+	    SharedPreferences myPrefs = getSharedPreferences("PREFS", 0);
+	    
+	    check = myPrefs.getString("Login", "none");
+	    
+	    //Toast.makeText(this, "you are" + check, Toast.LENGTH_LONG).show();
+	    
+	    if (check.equals("none")) {
+	    	
+	    	Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+	    	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	startActivity(intent);
+	    }
+		return false;
+	    
+    
     }
     
 }
