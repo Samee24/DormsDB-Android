@@ -102,7 +102,7 @@ private TextView empty;
 			getRoomData GetRoomData = new getRoomData ();
 			GetRoomData.execute();
 		}
-		else { Toast.makeText(searchBox.this, "lolz", Toast.LENGTH_LONG).show();
+		else { Toast.makeText(searchBox.this, "No Internet Connection", Toast.LENGTH_LONG).show();
 		}
 		
 		    
@@ -148,6 +148,7 @@ private TextView empty;
 				
 				String room = rm1.getString("room");				
 				room = Html.fromHtml(room).toString();
+				room = room.substring(0, 4);
 				
 				String subfree = rm1.getString("subfree");
 				subfree = Html.fromHtml(subfree).toString();

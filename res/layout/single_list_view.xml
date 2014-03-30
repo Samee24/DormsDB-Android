@@ -52,30 +52,30 @@
     <ImageView
         android:id="@+id/subfreeImg"
         android:scaleType="centerCrop"
-        android:layout_width="20sp"
-        android:layout_height="20sp"
-        android:layout_marginBottom="30sp"
-        android:layout_marginTop="-20sp"
-        android:layout_marginLeft="170sp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginLeft="170dp"
     />
     
       <ImageView
           android:id="@+id/laundryImg"
-          android:layout_width="20sp"
-          android:layout_height="20sp"
+          android:layout_width="20dp"
+          android:layout_height="20dp"
           android:scaleType="centerCrop"
-          android:layout_marginBottom="10sp"
-       	  android:layout_marginTop="-20sp"
-          android:layout_marginLeft="140sp"
+          android:layout_marginBottom="10dp"
+       	  android:layout_marginTop="-20dp"
+          android:layout_marginLeft="140dp"
            />
 
       <ImageView
         android:id="@+id/acImg"
         android:scaleType="centerCrop"
-        android:layout_width="20sp"
-        android:layout_height="20sp"
-        android:layout_marginTop="-30sp"
-        android:layout_marginLeft="170sp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="-30dp"
+        android:layout_marginLeft="170dp"
         />
     </LinearLayout>
 </LinearLayout>

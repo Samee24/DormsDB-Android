@@ -34,10 +34,13 @@ import org.apache.http.protocol.HTTP;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -91,6 +94,8 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
+				
+				
 				email = mEmail.getText().toString();
 				password = mPassword.getText().toString();
 				
@@ -104,6 +109,18 @@ public class LoginActivity extends Activity {
 					AlertDialog dialog = builder.create();
 					dialog.show();
 					
+				}
+				
+				else if (isNetworkNotAvailable()){
+				
+					
+					AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+					builder.setMessage("Please make sure you are connected to the internet!")
+						.setTitle("Error")
+						.setPositiveButton(android.R.string.ok,null);
+					
+					AlertDialog dialog = builder.create();
+					dialog.show();
 					
 				}
 				
@@ -143,6 +160,18 @@ public class LoginActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
+	}
+	
+	private boolean isNetworkNotAvailable() {
+		ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+		
+		boolean isAvailable = true;
+		if (networkInfo != null && networkInfo.isConnected()) {
+			
+			isAvailable = false;
+		}
+		return isAvailable;
 	}
 
 	
