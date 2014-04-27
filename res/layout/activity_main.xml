@@ -1,68 +1,216 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/scroll"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:fillViewport="true"
+   android:stackFromBottom="true"
+   android:transcriptMode="alwaysScroll" >
+
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="#ffffff"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/db_bg1"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true" 
     tools:context=".MainActivity" >
+
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:src="@drawable/title_image" />
 
-    <CheckBox
-        android:id="@+id/checkBoxLaundry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/checkBoxAC"
-        android:layout_marginTop="60dp"
-        android:onClick="onCheckboxClick"
-        android:text="@string/Option_Laundry" />
+           <FrameLayout
+               android:id="@+id/frame_sub"
+               android:layout_width="fill_parent"
+               android:layout_height="50dp"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/imageView1"
+               android:background="@drawable/rectangle"
+               android:clickable="true"
+               android:paddingLeft="7dp" >
 
-    <Button
-        android:id="@+id/buttonSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/checkBoxPrinter"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:text="@string/Search" />
+               <CheckBox
+                   android:id="@+id/SubFree"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical|right"
+                   android:layout_marginLeft="30dp"
+                   android:text="Substance Free"
+                   android:textColor="#8B0000"
+                   android:textSize="20sp" />
+            
+           </FrameLayout>
 
-    <CheckBox
-        android:id="@+id/checkBoxPrinter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/SubFree"
-        android:layout_marginTop="48dp"
-        android:onClick="onCheckboxClick"
-        android:text="@string/Option_Printer" />
+           <FrameLayout
+               android:id="@+id/frame_ac"
+               android:layout_width="fill_parent"
+               android:layout_height="50dp"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/frame_sub"
+               android:layout_marginTop="30dp"
+               android:background="@drawable/rectangle"
+               android:clickable="true"
+               android:paddingLeft="7dp" >
 
-    <CheckBox
-        android:id="@+id/checkBoxAC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/SubFree"
-        android:layout_alignTop="@+id/imageView1"
-        android:layout_marginTop="153dp"
-        android:onClick="onCheckboxClick"
-        android:text="@string/Option_AC" />
+               <CheckBox
+                   android:id="@+id/checkBoxAC"
+                    android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical|right"
+                   android:layout_marginLeft="30dp"
+                   android:text="Air Conditioning"
+                   android:textColor="#8B0000"
+                   android:textSize="20sp" />
+           </FrameLayout>
 
-    <CheckBox
-        android:id="@+id/SubFree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/checkBoxLaundry"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:text="@string/SubFree" />
+           <FrameLayout
+               android:id="@+id/frame_printer"
+               android:layout_width="fill_parent"
+               android:layout_height="50dp"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/frame_ac"
+               android:layout_marginTop="30dp"
+               android:background="@drawable/rectangle"
+               android:clickable="true"
+               android:paddingLeft="7dp" >
+
+               <CheckBox
+                   android:id="@+id/checkBoxPrinter"
+                    android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical|right"
+                   android:layout_marginLeft="30dp"
+                   android:text="Printing"
+                   android:textColor="#8B0000"
+                   android:textSize="20sp" />
+           </FrameLayout>
+
+           <FrameLayout
+               android:id="@+id/frame_laundry"
+               android:layout_width="fill_parent"
+               android:layout_height="50dp"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/frame_printer"
+                android:layout_marginTop="30dp"
+               android:background="@drawable/rectangle"
+               android:clickable="true"
+               android:paddingLeft="7dp" >
+
+               <CheckBox
+                   android:id="@+id/checkBoxLaundry"
+                    android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical|right"
+                   android:layout_marginLeft="30dp"
+                   android:text="Laundry"
+                   android:textColor="#8B0000"
+                   android:textSize="20sp" />
+           </FrameLayout>
+
+           <FrameLayout
+               android:id="@+id/frame_room"
+               android:layout_width="fill_parent"
+               android:layout_height="50dp"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/frame_laundry"
+                android:layout_marginTop="30dp"
+               android:background="@drawable/rectangle"
+               android:clickable="true"
+               android:paddingLeft="7dp" >
+
+               <TextView
+                   android:id="@+id/roomNum_text"
+                   android:layout_width="252dp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical|left"
+                   android:layout_marginLeft="20dp"
+                   android:text="Room Number"
+                   android:textColor="#8B0000"
+                   android:textSize="20sp"/>
+
+               <EditText
+                   android:id="@+id/roomNum"
+                   android:layout_width="150dp"
+                   android:background="@drawable/rectangle"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical|right"
+                   android:layout_marginRight="20dp"
+                  android:textColor="#8B0000"
+                   android:ems="10"
+                   android:inputType="numberSigned" >
+               </EditText>
+
+           </FrameLayout>
+
+           <TextView
+               android:id="@+id/email_display"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/buttonSearch"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="35dp"
+               android:text="" />
+
+           <TextView
+               android:id="@+id/Logout"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/email_display"
+               android:textColor="#00688B"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="23dp"
+               android:text="Logout" />
+
+           <FrameLayout
+               android:id="@+id/frame_campus"
+               android:layout_width="fill_parent"
+               android:layout_height="50dp"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/frame_laundry"
+               android:layout_marginTop="108dp"
+               android:background="@drawable/rectangle"
+               android:clickable="true"
+               android:paddingLeft="7dp" >
+
+               <Spinner
+                   android:id="@+id/campus_spinner"
+                   android:layout_width="345dp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical|left"
+                   android:layout_marginRight="60dp"
+                   android:background="@drawable/rectangle_2"
+                   android:text="Campus"
+
+                   android:textColor="#8B0000"
+                   android:textSize="20sp" />
+
+               <ImageView
+                   android:id="@+id/imageView2"
+                   android:layout_width="wrap_content"
+                   android:layout_height="20dp"
+                   android:layout_gravity="center_vertical|right"
+                   android:layout_marginRight="20dp"
+                   android:src="@drawable/arrow" />
+
+           </FrameLayout>
+
+           <Button
+               android:id="@+id/buttonSearch"
+               android:layout_width="200dp"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/frame_campus"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="58dp"
+               android:text="Search" />
 
 </RelativeLayout>
+
+</ScrollView>

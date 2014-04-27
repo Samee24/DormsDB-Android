@@ -11,5 +11,17 @@
     <string name="toastPrinter">You love to Print.</string>
     <string name="Searcher">Searcher</string>
     <string name="SubFree">Substance Free?</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_label">Login</string>
+    <string name="Logout"><u>Log out</u></string>
+    <string name="signUp"><u>Sign up for DorsmDB!</u></string>
+    <string-array name="campus_name">
+        <item><i>Choose Campus</i></item>
+        <item >North</item>
+        <item >South</item>
+        <item >East</item>
+        
+    </string-array>
 
 </resources>

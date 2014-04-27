@@ -5,19 +5,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
@@ -26,7 +28,6 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
@@ -59,10 +60,7 @@ public static final String TAG = searchBox.class.getSimpleName();
 	
 protected ProgressBar mProgressBar;	
 protected JSONObject mRoomInfo;
-public String ld;
-public String ad;
-public String pd;
-public String sfd;
+public String ld, ad, pd, sfd, cd, rd;
 public ArrayList<HashMap <String, String>> roomPosts;
 private TextView empty;
 //public ListView listview;
@@ -89,7 +87,9 @@ private TextView empty;
 		    ad = intent.getStringExtra("AD");
 		    pd = intent.getStringExtra("PD");
 		    sfd = intent.getStringExtra("SFD");
-		    Log.v("DATA", ld + ad + pd);
+		    cd = intent.getStringExtra("CD");
+		    rd = intent.getStringExtra("RD");
+		    Log.v("DATA",ld + ad + pd + sfd + cd + rd);
 		   }
 		
 		mProgressBar = (ProgressBar) findViewById(com.example.dormsdb.R.id.progressBar1);
@@ -101,7 +101,7 @@ private TextView empty;
 			getRoomData GetRoomData = new getRoomData ();
 			GetRoomData.execute();
 		}
-		else { Toast.makeText(searchBox.this, "lolz", Toast.LENGTH_LONG).show();
+		else { Toast.makeText(searchBox.this, "No Internet Connection", Toast.LENGTH_LONG).show();
 		}
 		
 		    
@@ -133,11 +133,21 @@ private TextView empty;
 				String hall = rm1.getString("hall");
 				hall = Html.fromHtml(hall).toString();
 				
+				String ac = rm1.getString("ac");
+				ac = Html.fromHtml(ac).toString();
+				
+				String laundry = rm1.getString("laundry");
+				laundry = Html.fromHtml(laundry).toString();
+				
 				String campus = rm1.getString("campus");
 				campus = Html.fromHtml(campus).toString();
 				
+				String printer = rm1.getString("printer");
+				printer = Html.fromHtml(printer).toString();
+				
 				String room = rm1.getString("room");				
 				room = Html.fromHtml(room).toString();
+				room = room.substring(0, 4);
 				
 				String subfree = rm1.getString("subfree");
 				subfree = Html.fromHtml(subfree).toString();
@@ -173,6 +183,19 @@ private TextView empty;
 					post.put("hallImage", Integer.toString(R.drawable.north));
 				}
 				
+				if (subfree.equals("1")) {
+					post.put("subfreeImg", Integer.toString(R.drawable.subfree));
+				}
+				if (printer.equals("1")) {
+					post.put("printerImg", Integer.toString(R.drawable.printer));
+				}
+				if (ac.equals("1")) {
+					post.put("acImg", Integer.toString(R.drawable.aircond));
+				}
+				if (laundry.equals("1")) {
+					post.put("laundryImg", Integer.toString(R.drawable.laundry));
+				}
+				
 				
 				
 				
@@ -193,8 +216,9 @@ private TextView empty;
 				
 			
 			
-				int[] ids = {com.example.dormsdb.R.id.hall, com.example.dormsdb.R.id.room, com.example.dormsdb.R.id.hallImage};
-				String[] keys = {"hall", "room", "hallImage"};	
+				int[] ids = {com.example.dormsdb.R.id.hall, com.example.dormsdb.R.id.room, 
+						com.example.dormsdb.R.id.hallImage, R.id.subfreeImg, R.id.printerImg, R.id.acImg, R.id.laundryImg};
+				String[] keys = {"hall", "room", "hallImage","subfreeImg","printerImg", "acImg", "laundryImg"};	
 				
 				
 				
@@ -306,53 +330,60 @@ private TextView empty;
 		 
 		try {
 			
-			HttpPost httppost = new HttpPost("https://dormsdb.alexthemitchell.com/api.php");
+			//HttpPost httppost = new HttpPost("https://dormsdb.alexthemitchell.com/api.php");
 			
+			URI url = new URI("https://dormsdb.alexthemitchell.com/api.php?roomquery=true" + ld + ad + pd + sfd + cd + rd);
+			Log.v("WEBSITE", url.toString());
 		
-		
-			        // Add your data
+			        /* Add your data
 			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			        nameValuePairs.add(new BasicNameValuePair("roomquery", "roomquery=true"));
 			        nameValuePairs.add(new BasicNameValuePair("ac", ad));
 			        nameValuePairs.add(new BasicNameValuePair("laundry", ld));
 			        nameValuePairs.add(new BasicNameValuePair("printer", pd));
 			        nameValuePairs.add(new BasicNameValuePair("subfree", sfd));
-			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));*/
 
 			        // Execute HTTP Post Request
-			        HttpResponse response = createHttpClient().execute(httppost);
+			       //HttpResponse response = createHttpClient().
 			      
-			        
+			Log.v(TAG, ld + ad + pd );
 			   
 			
-			Log.v(TAG, ld + ad + pd );
+			
 			//URL url = new URL("https://dormsdb.alexthemitchell.com/api.php?format=JSON" 
 				//	+ ld + ad + pd + sfd);
 			
-			//HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
 
-			//	@Override
-			//	public boolean verify(String arg0, SSLSession arg1) {
-			////		// TODO Auto-generated method stub
-			//		return true;
-			//	}
-		//	});
-			//HttpsURLConnection s_url = (HttpsURLConnection) url.openConnection();
+				@Override
+				public boolean verify(String arg0, SSLSession arg1) {
+					// TODO Auto-generated method stub
+					return true;
+				}
+		});
+			//HttpsURLConnection response = (HttpsURLConnection) url.openConnection();
 			
+			HttpGet get = new HttpGet(url);
 			//Log.v(TAG, ld + ad + pd + sfd );
-			
-			
+			HttpResponse response = createHttpClient().execute(get);
 			 
 			 responseCode = response.getStatusLine().getStatusCode();
+			 HttpEntity entity = response.getEntity();
+			 
+			 if (entity == null){
+				 Log.v(TAG, "empty");
+			 }
 			 
 			 if (responseCode == HttpURLConnection.HTTP_OK) {
+			
 				  BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 				  String responseData = reader.readLine();
-					
+				  
 					
 					jsonResponse = new JSONObject(responseData);
 					reader.close();
-					Log.v(TAG, responseData);
+	
 				 
 				 
 			 }
@@ -369,6 +400,9 @@ private TextView empty;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			Log.e(TAG, "Exception caught: " + e);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		 
 		 

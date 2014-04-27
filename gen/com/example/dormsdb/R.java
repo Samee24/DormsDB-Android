@@ -8,6 +8,9 @@
 package com.example.dormsdb;
 
 public final class R {
+    public static final class array {
+        public static final int campus_name=0x7f060000;
+    }
     public static final class attr {
     }
     public static final class dimen {
@@ -21,54 +24,109 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int east=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int north=0x7f020002;
-        public static final int south=0x7f020003;
-        public static final int title_image=0x7f020004;
+        public static final int aircond=0x7f020000;
+        public static final int arrow=0x7f020001;
+        public static final int button=0x7f020002;
+        public static final int button_click=0x7f020003;
+        public static final int db_bg1=0x7f020004;
+        public static final int east=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int laundry=0x7f020007;
+        public static final int north=0x7f020008;
+        public static final int printer=0x7f020009;
+        public static final int rectangle=0x7f02000a;
+        public static final int rectangle_2=0x7f02000b;
+        public static final int south=0x7f02000c;
+        public static final int subfree=0x7f02000d;
+        public static final int title_image=0x7f02000e;
     }
     public static final class id {
-        public static final int Cluster=0x7f08000a;
-        public static final int Hall=0x7f080009;
-        public static final int Raters=0x7f080007;
-        public static final int Room=0x7f08000b;
-        public static final int SubFree=0x7f080005;
-        public static final int SubfreeExtra=0x7f08000c;
-        public static final int Type=0x7f080006;
-        public static final int action_settings=0x7f080014;
-        public static final int buttonSearch=0x7f080003;
-        public static final int checkBoxAC=0x7f080002;
-        public static final int checkBoxLaundry=0x7f080001;
-        public static final int checkBoxPrinter=0x7f080004;
-        public static final int empty=0x7f080010;
-        public static final int hall=0x7f080012;
-        public static final int hallImage=0x7f080011;
-        public static final int imageView1=0x7f080000;
-        public static final int listview=0x7f08000e;
-        public static final int progressBar1=0x7f08000f;
-        public static final int rating=0x7f080008;
-        public static final int room=0x7f080013;
-        public static final int textview=0x7f08000d;
+        public static final int Cluster=0x7f09001b;
+        public static final int Hall=0x7f09001a;
+        public static final int Logout=0x7f090013;
+        public static final int Raters=0x7f090018;
+        public static final int Room=0x7f09001c;
+        public static final int SignUp=0x7f090000;
+        public static final int SubFree=0x7f090007;
+        public static final int SubfreeExtra=0x7f09001d;
+        public static final int Type=0x7f090017;
+        public static final int acImg=0x7f090027;
+        public static final int action_settings=0x7f09002b;
+        public static final int buttonSearch=0x7f090012;
+        public static final int campus_spinner=0x7f090015;
+        public static final int checkBoxAC=0x7f090009;
+        public static final int checkBoxLaundry=0x7f09000d;
+        public static final int checkBoxPrinter=0x7f09000b;
+        public static final int email_display=0x7f090011;
+        public static final int email_login=0x7f090003;
+        public static final int empty=0x7f090020;
+        public static final int frame_ac=0x7f090008;
+        public static final int frame_campus=0x7f090014;
+        public static final int frame_laundry=0x7f09000c;
+        public static final int frame_printer=0x7f09000a;
+        public static final int frame_room=0x7f09000e;
+        public static final int frame_sub=0x7f090006;
+        public static final int hall=0x7f090022;
+        public static final int hallImage=0x7f090021;
+        public static final int imageView1=0x7f090004;
+        public static final int imageView2=0x7f090016;
+        public static final int laundryImg=0x7f090026;
+        public static final int listview=0x7f09001e;
+        public static final int listview_background_shape=0x7f09002a;
+        public static final int login_button=0x7f090001;
+        public static final int password_login=0x7f090002;
+        public static final int printerImg=0x7f090024;
+        public static final int progressBar1=0x7f09001f;
+        public static final int rating=0x7f090019;
+        public static final int room=0x7f090023;
+        public static final int roomNum=0x7f090010;
+        public static final int roomNum_text=0x7f09000f;
+        public static final int scroll=0x7f090005;
+        public static final int spinner_text=0x7f090028;
+        public static final int spinner_text_2=0x7f090029;
+        public static final int subfreeImg=0x7f090025;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int extra_info2=0x7f030001;
-        public static final int list_view=0x7f030002;
-        public static final int single_list_view=0x7f030003;
+        public static final int activity_login=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int extra_info2=0x7f030002;
+        public static final int list_view=0x7f030003;
+        public static final int single_list_view=0x7f030004;
+        public static final int spinner_layout=0x7f030005;
+        public static final int spinner_layout_2=0x7f030006;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int login=0x7f080000;
+        public static final int main=0x7f080001;
     }
     public static final class string {
+        public static final int Logout=0x7f05000d;
         public static final int Option_AC=0x7f050003;
         public static final int Option_Laundry=0x7f050004;
         public static final int Option_Printer=0x7f050005;
         public static final int Search=0x7f050006;
         public static final int Searcher=0x7f050008;
         public static final int SubFree=0x7f050009;
+        public static final int action_forgot_password=0x7f050014;
         public static final int action_settings=0x7f050001;
+        public static final int action_sign_in_register=0x7f050012;
+        public static final int action_sign_in_short=0x7f050013;
         public static final int app_name=0x7f050000;
+        public static final int email_hint=0x7f05000a;
+        public static final int error_field_required=0x7f050019;
+        public static final int error_incorrect_password=0x7f050018;
+        public static final int error_invalid_email=0x7f050016;
+        public static final int error_invalid_password=0x7f050017;
         public static final int hello_world=0x7f050002;
+        public static final int login_label=0x7f05000c;
+        public static final int login_progress_signing_in=0x7f050015;
+        public static final int password_hint=0x7f05000b;
+        /**  Strings related to login 
+         */
+        public static final int prompt_email=0x7f050010;
+        public static final int prompt_password=0x7f050011;
+        public static final int signUp=0x7f05000e;
+        public static final int title_activity_login=0x7f05000f;
         public static final int toastPrinter=0x7f050007;
     }
     public static final class style {
@@ -93,10 +151,11 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
+        public static final int LoginFormContainer=0x7f070002;
     }
 }

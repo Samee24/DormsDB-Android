@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50sp"
+    android:layout_height="60sp"
     android:orientation="horizontal"
 >
     <ImageView
@@ -13,13 +13,8 @@
         android:paddingBottom="10sp"
         android:layout_marginLeft="0sp"
     />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-    >
-        <TextView
+    
+     <TextView
             android:id="@+id/hall"
             android:paddingLeft="10sp"
             android:layout_width="wrap_content"
@@ -33,6 +28,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:layout_marginLeft="-60sp"
+            android:layout_marginTop="20sp"
+        />
+       
+        
+    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+    >
+    
+          <ImageView
+        android:id="@+id/printerImg"
+        android:scaleType="centerCrop"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginLeft="140sp"
+    />
+    
+    <ImageView
+        android:id="@+id/subfreeImg"
+        android:scaleType="centerCrop"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginLeft="170dp"
+    />
+    
+      <ImageView
+          android:id="@+id/laundryImg"
+          android:layout_width="20dp"
+          android:layout_height="20dp"
+          android:scaleType="centerCrop"
+          android:layout_marginBottom="10dp"
+       	  android:layout_marginTop="-20dp"
+          android:layout_marginLeft="140dp"
+           />
+
+      <ImageView
+        android:id="@+id/acImg"
+        android:scaleType="centerCrop"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="-30dp"
+        android:layout_marginLeft="170dp"
         />
     </LinearLayout>
 </LinearLayout>
