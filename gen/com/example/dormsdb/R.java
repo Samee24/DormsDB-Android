@@ -25,7 +25,6 @@ public final class R {
     }
     public static final class drawable {
         public static final int aircond=0x7f020000;
-<<<<<<< HEAD
         public static final int arrow=0x7f020001;
         public static final int button=0x7f020002;
         public static final int button_click=0x7f020003;
@@ -86,49 +85,6 @@ public final class R {
         public static final int spinner_text=0x7f090028;
         public static final int spinner_text_2=0x7f090029;
         public static final int subfreeImg=0x7f090025;
-=======
-        public static final int east=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int laundry=0x7f020003;
-        public static final int north=0x7f020004;
-        public static final int printer=0x7f020005;
-        public static final int south=0x7f020006;
-        public static final int subfree=0x7f020007;
-        public static final int title_image=0x7f020008;
-    }
-    public static final class id {
-        public static final int Cluster=0x7f080010;
-        public static final int Hall=0x7f08000f;
-        public static final int Logout=0x7f08000a;
-        public static final int Raters=0x7f08000d;
-        public static final int Room=0x7f080011;
-        public static final int SignUp=0x7f080000;
-        public static final int SubFree=0x7f080007;
-        public static final int SubfreeExtra=0x7f080012;
-        public static final int Type=0x7f08000c;
-        public static final int acImg=0x7f08001d;
-        public static final int action_settings=0x7f08001e;
-        public static final int buttonSearch=0x7f080005;
-        public static final int checkBoxAC=0x7f080009;
-        public static final int checkBoxLaundry=0x7f080008;
-        public static final int checkBoxPrinter=0x7f080006;
-        public static final int email_display=0x7f08000b;
-        public static final int email_login=0x7f080003;
-        public static final int empty=0x7f080016;
-        public static final int hall=0x7f080018;
-        public static final int hallImage=0x7f080017;
-        public static final int imageView1=0x7f080004;
-        public static final int laundryImg=0x7f08001c;
-        public static final int listview=0x7f080014;
-        public static final int login_button=0x7f080001;
-        public static final int password_login=0x7f080002;
-        public static final int printerImg=0x7f08001a;
-        public static final int progressBar1=0x7f080015;
-        public static final int rating=0x7f08000e;
-        public static final int room=0x7f080019;
-        public static final int subfreeImg=0x7f08001b;
-        public static final int textview=0x7f080013;
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -136,19 +92,12 @@ public final class R {
         public static final int extra_info2=0x7f030002;
         public static final int list_view=0x7f030003;
         public static final int single_list_view=0x7f030004;
-<<<<<<< HEAD
         public static final int spinner_layout=0x7f030005;
         public static final int spinner_layout_2=0x7f030006;
     }
     public static final class menu {
         public static final int login=0x7f080000;
         public static final int main=0x7f080001;
-=======
-    }
-    public static final class menu {
-        public static final int login=0x7f070000;
-        public static final int main=0x7f070001;
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
     }
     public static final class string {
         public static final int Logout=0x7f05000d;
@@ -206,12 +155,7 @@ public final class R {
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-<<<<<<< HEAD
         public static final int AppTheme=0x7f070001;
         public static final int LoginFormContainer=0x7f070002;
-=======
-        public static final int AppTheme=0x7f060001;
-        public static final int LoginFormContainer=0x7f060002;
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
     }
 }

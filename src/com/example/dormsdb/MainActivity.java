@@ -6,10 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
-<<<<<<< HEAD
+
 import android.graphics.Typeface;
-=======
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -19,35 +18,29 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-<<<<<<< HEAD
+
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-=======
+
 import android.widget.TextView;
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
+
 
 public class MainActivity extends Activity {
 	
 	private CheckBox checkBoxPrinter,checkBoxLaundry,checkBoxSubFree,checkBoxAC;
-<<<<<<< HEAD
 	private TextView mLogOut, mEmailDisplay, mRoomNum,room_text;
-=======
-	private TextView mLogOut, mEmailDisplay;
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
 	public Button buttonSearch;
 	public String printData = ""; 
 	public String acData = "";
 	public String campusData = "";
 	public String subfreeData = "";
 	public String laundryData = "";
-<<<<<<< HEAD
+
 	public String roomData = "";
 	public String check;
 	public Spinner spinner;
-=======
-	public String check;
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
+
 	
 	/*public static final String PREFS_NAME = "MyPrefsFile";
 	private static final String PREF_USERNAME = "username";
@@ -62,7 +55,6 @@ public class MainActivity extends Activity {
         checker();
         setContentView(R.layout.activity_main);
         
-<<<<<<< HEAD
         Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Raleway-Regular.ttf");
         
         mEmailDisplay = (TextView) findViewById(R.id.email_display);
@@ -120,13 +112,11 @@ public class MainActivity extends Activity {
 	});
      
         
-=======
         mEmailDisplay = (TextView) findViewById(R.id.email_display);
         mLogOut = (TextView) findViewById(R.id.Logout);
         
         mEmailDisplay.setText(check);
         
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
         mLogOut.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -152,21 +142,6 @@ public class MainActivity extends Activity {
         
     }
     
-<<<<<<< HEAD
-=======
-
-    
-    
-    @Override
-    protected void onDestroy() {
-    	// TODO Auto-generated method stub
-    	super.onStop();
-    	
-    	
-    }
- 
-
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
 
     
  

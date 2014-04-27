@@ -16,7 +16,6 @@
     <string name="login_label">Login</string>
     <string name="Logout"><u>Log out</u></string>
     <string name="signUp"><u>Sign up for DorsmDB!</u></string>
-<<<<<<< HEAD
     <string-array name="campus_name">
         <item><i>Choose Campus</i></item>
         <item >North</item>
@@ -24,7 +23,5 @@
         <item >East</item>
         
     </string-array>
-=======
->>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
 
 </resources>
