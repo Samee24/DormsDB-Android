@@ -87,9 +87,13 @@ private TextView empty;
 		    ad = intent.getStringExtra("AD");
 		    pd = intent.getStringExtra("PD");
 		    sfd = intent.getStringExtra("SFD");
+<<<<<<< HEAD
 		    cd = intent.getStringExtra("CD");
 		    rd = intent.getStringExtra("RD");
 		    Log.v("DATA",ld + ad + pd + sfd + cd + rd);
+=======
+		    Log.v("DATA",ld + ad + pd + sfd);
+>>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
 		   }
 		
 		mProgressBar = (ProgressBar) findViewById(com.example.dormsdb.R.id.progressBar1);
@@ -332,7 +336,11 @@ private TextView empty;
 			
 			//HttpPost httppost = new HttpPost("https://dormsdb.alexthemitchell.com/api.php");
 			
+<<<<<<< HEAD
 			URI url = new URI("https://dormsdb.alexthemitchell.com/api.php?roomquery=true" + ld + ad + pd + sfd + cd + rd);
+=======
+			URI url = new URI("https://dormsdb.alexthemitchell.com/api.php?roomquery=true" + ld + ad + pd + sfd);
+>>>>>>> 5ba1e2a8990808dbbc87fcd1cec40b5bc6bbb313
 			Log.v("WEBSITE", url.toString());
 		
 			        /* Add your data
